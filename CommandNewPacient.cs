@@ -11,7 +11,8 @@ namespace pacientes
     {
         public void Activate()
         {
-            MessageBox.Show("You clicked 'New...'");
+            NewPacientDialog dialog = new NewPacientDialog();
+            dialog.ShowDialog();
 
         }
     }
