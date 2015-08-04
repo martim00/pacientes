@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using pacientes.ViewModel;
 
 namespace pacientes
 {
@@ -20,17 +21,20 @@ namespace pacientes
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CommandManager commandManager;
+        private MainWindowViewModel viewModel;
 
-        public MainWindow(CommandManager commandManager)
+        public MainWindow(MainWindowViewModel viewModel)
         {
-            this.commandManager = commandManager;
             InitializeComponent();
+            this.viewModel = viewModel;
+
+            this.DataContext = viewModel;
+            //this.pacientGrid.ItemsSource = viewModel.AllPacients;
         }
 
         private void NewPacientClicked(object sender, RoutedEventArgs e)
         {
-            this.commandManager.ActivateCommand(typeof(CommandNewPacient).Name);
+            this.viewModel.NewPacientCommand.Execute(null);
         }
     }
 }

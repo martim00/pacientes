@@ -8,7 +8,7 @@ namespace pacientes
 {
     public class CommandManager
     {
-        private Dictionary<String, ICommand> commands = new Dictionary<string, ICommand>();
+        private Dictionary<String, IAction> commands = new Dictionary<string, IAction>();
 
         public void ActivateCommand(String commandId)
         {
@@ -18,7 +18,7 @@ namespace pacientes
             commands[commandId].Activate();
         }
 
-        public void AddCommand(ICommand command)
+        public void AddCommand(IAction command)
         {
             var commandId = command.GetType().Name;
 

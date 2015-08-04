@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using pacientes.ViewModel;
 
 namespace pacientes
 {
@@ -19,9 +20,22 @@ namespace pacientes
     /// </summary>
     public partial class NewPacientDialog : Window
     {
-        public NewPacientDialog()
+        private NewPacientViewModel vm;
+
+        public NewPacientDialog(NewPacientViewModel vm)
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;               // don't show the dialog on the taskbar
+            this.Topmost = true;                      // ensure we're Always On Top
+            this.ResizeMode = ResizeMode.NoResize;    // remove excess caption bar buttons
+            this.Owner = Application.Current.MainWindow;
+            this.vm = vm;
+        }
+
+        private void SavePacientHandler(object sender, RoutedEventArgs e)
+        {
+            vm.SavePacient(this.pacientName.Text);
+            this.Close();
         }
     }
 }

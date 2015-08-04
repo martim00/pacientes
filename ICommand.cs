@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pacientes
 {
-    public interface ICommand
+    public interface IAction
     {
         void Activate();
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pacientes.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -14,14 +15,19 @@ namespace pacientes
     public partial class App : Application
     {
         private CommandManager commandManager = new CommandManager();
+        private DbService dbService = new DbService();
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            commandManager.AddCommand(new CommandNewPacient());
+            dbService.Init();
 
-            MainWindow mw = new MainWindow(commandManager);
+            commandManager.AddCommand(new CommandNewPacient(dbService));
+
+            MainWindowViewModel viewModel = new MainWindowViewModel(commandManager, dbService);
+
+            MainWindow mw = new MainWindow(viewModel);
             mw.Show();
         }
     }

@@ -11,6 +11,6 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TextBox AcceptsReturn="True" />
+        <DataGrid x:Name="pacientGrid" ItemsSource="{Binding Path=AllPacients}" IsReadOnly="true" Height="299" VerticalAlignment="Top"/>
     </DockPanel>
 </Window>
